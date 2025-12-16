@@ -1,0 +1,131 @@
+use balaji_sql_practice;
+CREATE TABLE Persons (
+    PersonID INT PRIMARY KEY,
+    LastName VARCHAR(255),
+    FirstName VARCHAR(255),
+    Age INT
+);
+INSERT INTO Persons
+VALUES (1, 'Patil', 'Harish', 32);
+
+INSERT INTO Persons
+VALUES (1, 'Patel', 'Hari', 23);
+
+SELECT * FROM Persons;
+
+CREATE TABLE Orders1 (
+OrderID INT NOT NULL,
+OrderNumber INT NOT NULL,
+PersonID INT,
+PRIMARY KEY (OrderID),
+FOREIGN KEY (PersonID) REFERENCES Persons(PersonID)
+);
+
+
+INSERT INTO Orders1 (OrderID, OrderNumber, PersonID)
+VALUES (104, 5004, 1);
+
+SELECT * FROM Orders1;
+
+CREATE TABLE Student (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50),
+    dob DATE,
+    email VARCHAR(50)
+);
+INSERT INTO Student (student_id, name, dob, email)
+VALUES (1,'balaji', '2003-08-30', '236a@gmail.com'),
+(2, 'Bala', '2003-08-30', 'balaji@gmail.com'),
+(3, 'Arjun', '2002-05-15', 'arjun@gmail.com'),
+(4, 'Sneha', '2003-01-10', 'sneha@gmail.com');
+
+SELECT * FROM Student;
+CREATE TABLE Course (
+    course_id INT PRIMARY KEY,
+    course_name VARCHAR(50),
+    credits INT
+);
+
+SELECT * FROM Course;
+CREATE TABLE Enrollment (
+    student_id INT,
+    course_id INT,
+    enrollment_date DATE,
+    PRIMARY KEY (student_id, course_id),
+    FOREIGN KEY (student_id) REFERENCES Student(student_id),
+    FOREIGN KEY (course_id) REFERENCES Course(course_id)
+);
+
+SELECT * FROM Enrollment;
+
+CREATE TABLE Book (
+    book_id INT PRIMARY KEY,
+    title VARCHAR(100),
+    author VARCHAR(100),
+    price INT
+);
+
+SELECT * FROM Book;
+CREATE TABLE Member (
+    member_id INT PRIMARY KEY,
+    name VARCHAR(100),
+    email VARCHAR(100),
+    phone VARCHAR(15)
+);
+SELECT * FROM Member;
+CREATE TABLE Loan (
+    loan_id INT PRIMARY KEY,
+    book_id INT,
+    member_id INT,
+    issue_date DATE,
+    return_date DATE,
+    FOREIGN KEY (book_id) REFERENCES Book(book_id),
+    FOREIGN KEY (member_id) REFERENCES Member(member_id)
+);
+SELECT * FROM Loan;
+
+CREATE TABLE Customer (
+    customer_id INT PRIMARY KEY,
+    customer_name VARCHAR(100) NOT NULL,
+    email VARCHAR(100) UNIQUE,
+    phone VARCHAR(15),
+    city VARCHAR(50),
+    created_date DATE
+);
+drop TABLE Customer;
+ADD Address VARCHAR(255) NOT NULL;
+SELECT * FROM Customer;
+
+TRUNCATE TABLE Customer;
+
+CREATE TABLE Bank(
+EmployeeId INT PRIMARY KEY,
+EmployeeName VARCHAR(255),
+Salary INT
+);
+ALTER TABLE Bank
+ADD Address VARCHAR(255);
+DROP TABLE Bank;
+TRUNCATE TABLE Bank;
+ALTER TABLE Customer MODIFY Salary DECIMAL;
+SELECT * FROM Bank
+LIMIT 1;
+
+UPDATE Customer
+SET customer_name = 'Rakesh Jha'
+WHERE customer_id = 566;
+UPDATE Customer
+SET customer_name = 'Rakesh Jha'
+WHERE customer_id IN (566, 788);
+UPDATE Customer
+SET city = 'Hyderabad',
+    phone = '9876543210'
+WHERE customer_id = 566;
+INSERT INTO Customer
+(customer_id, customer_name, email, phone, city, created_date)
+VALUES
+(566, 'Ravi Kumar', 'ravi@gmail.com', '9876543210', 'Hyderabad', '2024-01-10'),
+(788, 'Amit Shah', 'amit@gmail.com', '9123456789', 'Delhi', '2024-02-15');
+SELECT customer_id FROM Customer;
+SELECT * FROM Customer WHERE customer_id IN (12,16);
+

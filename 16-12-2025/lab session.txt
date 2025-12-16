@@ -1,0 +1,83 @@
+CREATE DATABASE StudentRepo;
+USE StudentRepo;
+CREATE TABLE Student (
+id INT PRIMARY KEY,
+Name VARCHAR(255) NOT NULL,
+Class VARCHAR(255) NOT NULL,
+Mark INT NOT NULL,
+Gender VARCHAR(10) NOT NULL
+);
+SELECT * FROM Student;
+INSERT INTO Student VALUES
+(1, 'John Deo', 'Four', 75, 'Female'),
+(2, 'Max Ruin', 'Three', 85, 'Male'),
+(3, 'Arnold', 'Three', 55, 'Male'),
+(4, 'Krish Star', 'Four', 60, 'female'),
+(5, 'John Mike', 'Four', 60, 'female'),
+(6, 'Alex John', 'Four', 55, 'male'),
+(7, 'My John Rob', 'Five', 78, 'male'),
+(8, 'Asruid', 'Five', 85, 'male'),
+(9, 'Tes Qry', 'Six', 78, 'male'),
+(10, 'Big John', 'Four', 55, 'female');
+DROP TABLE Student;
+UPDATE Student
+SET Mark=70
+WHERE id=3;
+
+DELETE FROM Student
+WHERE id='9';
+SELECT * FROM Student
+ORDER BY Mark ASC;
+
+SELECT * FROM Student
+ORDER BY Mark DESC;
+
+SELECT * FROM Student
+WHERE Gender='female';
+
+SELECT COUNT(*) AS Total_female_Student FROM Student
+WHERE Gender='female';
+
+SELECT * FROM Student
+WHERE Mark=(SELECT MIN(Mark) FROM Student);
+
+SELECT * FROM Student
+WHERE Mark=(SELECT MAX(Mark) FROM Student);
+
+CREATE TABLE students (
+    student_id INT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    department VARCHAR(30) NOT NULL,
+    age INT,
+    marks INT
+);
+INSERT INTO Students VALUES(1, 'Balaji', 'CSE',22,85);
+
+INSERT INTO students VALUES
+(2, 'Ravi', 'ECE', 21, 70),
+(3, 'Anita', 'CSE', 19, 90),
+(4, 'Kiran', 'MECH', 22, 60);
+
+INSERT INTO Students VALUES(5, 'Sita', 'EEE',21,NULL);
+
+INSERT INTO students (student_id, name, department)
+VALUES (6, 'Aman', 'CSE');
+
+INSERT INTO students VALUES (7, 'Rohit', 'IT', 21, 88);
+SELECT * FROM Students;
+SELECT name, department FROM Students;
+
+SELECT * FROM Students WHERE department='CSE';
+SELECT * FROM Students WHERE marks>70;
+SELECT * FROM Students WHERE age BETWEEN 18 AND 22;
+SELECT * FROM Students ORDER BY marks DESC;
+SELECT COUNT(*) Total_Students FROM Student;
+UPDATE students SET marks = 75 WHERE student_id = 2;
+UPDATE students SET marks = marks + 5;
+UPDATE students SET department = 'IT' WHERE student_id = 4;
+UPDATE students SET marks = 0 WHERE marks IS NULL;
+UPDATE students SET age = 22 WHERE department = 'ECE';
+DELETE FROM students WHERE student_id = 6;
+DELETE FROM students WHERE marks < 40;
+	DELETE FROM students WHERE department = 'MECH';
+DELETE FROM students;
